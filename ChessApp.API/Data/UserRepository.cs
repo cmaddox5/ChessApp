@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChessApp.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,11 @@ namespace ChessApp.API.Data
         public async Task<User> GetUser(int id)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await _context.Users.ToListAsync();
         }
     }
 }
