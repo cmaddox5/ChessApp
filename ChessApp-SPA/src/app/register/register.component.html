@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <form [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()">
+    <h2 class="text-primary text-center">Register</h2>
+    <hr />
+
+    <div class="form-group">
+      <input type="text"
+             class="form-control"
+             [ngClass]="{'is-invalid': registerForm.get('email').errors && registerForm.get('email').touched}"
+             formControlName="email"
+             placeholder="Email" />
+      <div class="invalid-feedback">Email is required</div>
+    </div>
+
+    <div class="form-group">
+      <input type="password"
+             class="form-control"
+             [ngClass]="{'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}"
+             formControlName="password"
+             placeholder="Password" />
+      <div class="invalid-feedback"
+           *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">Password is
+        required</div>
+      <div class="invalid-feedback"
+           *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">Password
+        must contain at least 4 characters
+      </div>
+      <div class="invalid-feedback"
+           *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched">Password
+        cannot exceed 8 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text"
+             class="form-control"
+             [ngClass]="{'is-invalid': registerForm.get('name').errors && registerForm.get('name').touched}"
+             formControlName="name"
+             placeholder="Name" />
+      <div class="invalid-feedback">Name is required</div>
+    </div>
+
+    <div class="form-group text-center">
+      <button class="btn btn-secondary">Register</button>
+    </div>
+  </form>
+</div>
